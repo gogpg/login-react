@@ -1,0 +1,17 @@
+button{
+    margin-top: 50px;
+    width: 100%;
+    background-color: hsl(228, 13%, 60%);
+    color: #080710;
+    padding: 15px 0px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Vollkorn', serif;
+
+    &:hover {
+        background-color: hsl(228, 13%, 68%);
+    }
+}
