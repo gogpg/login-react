@@ -12,8 +12,8 @@ export default function Login() {
 
     return (
         <>
-            <div className="form_login">
-                <form className="form" onSubmit={handleSubmit}>
+            <div className="form_place">
+                <form onSubmit={handleSubmit}>
                     <h1>Login Here</h1>
                     <label htmlFor='email'>Email:</label>
                     <input id='email' className="email" value={email} placeholder="Email:" type="email" onChange={(e) => setEmail(e.target.value)} />

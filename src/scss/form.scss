@@ -1,23 +1,9 @@
-body {
-    background-image: url(../img/background3.png);
-    background-color: #171719;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100vh;
-    font-family: 'Vollkorn', serif;
-}
-.form_login {
+.form_place {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .form {
+    form {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -36,12 +22,12 @@ body {
             font-size: 40px;
             font-weight: 700;
             line-height: 42px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-align: center;
         }
         label {
-            margin-top: 30px;
-            margin-bottom: 10px;
+            margin-top: 20px;
+            margin-bottom: 4px;
             align-self: flex-start;
         }
         input{
@@ -64,8 +50,30 @@ body {
         }
     }
     .button_direction {
-        margin-top: 20px;
+        margin-top: 14px;
         padding: 15px 10px;
+        font-size: 0.8rem;
+    }
+    .pass_button {
+        margin-top: 10px;
+        width: fit-content;
+        place-self: flex-start;
+        padding: 10px;
         font-size: 14px;
+    }
+    .checkbox_place {
+        display: flex;
+       
+        .check_label {
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        #check {
+            width: fit-content;
+            accent-color: white;
+            height: fit-content;
+            margin-top: 21px;
+            margin-left: 0;
+        }
     }
 }

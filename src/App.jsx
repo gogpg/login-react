@@ -1,12 +1,12 @@
 import './App.scss';
-import Login from './components/Login';
-// import Register from './components/Register';
+// import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
     <>
-      {/* <Register /> */}
-      <Login />
+      <Register />
+      {/* <Login /> */}
     </>
   )
 }
