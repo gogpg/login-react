@@ -1,27 +1,39 @@
+import { useContext, useRef } from "react";
 import { useState } from "react";
+import DataContext from "./DataContext";
 
 export default function Login() {
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const loginEmailRef = useRef();
+    const loginPasswordRef = useRef();
+
+    const [type, setType] = useState('password');
+
+    const { setPageState } = useContext(DataContext)
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(email);
-        console.log(pass);
+
+        const loginEmail = loginEmailRef.current.value;
+        const loginPass = loginPasswordRef.current.value;
+
+        console.log({ loginEmail, loginPass })
     }
+
 
     return (
         <>
             <div className="form_place">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => { handleSubmit(e) }}>
                     <h1>Login Here</h1>
                     <label htmlFor='email'>Email:</label>
-                    <input id='email' className="email" value={email} placeholder="Email:" type="email" onChange={(e) => setEmail(e.target.value)} />
+                    <input id='email' className="email" ref={loginEmailRef} placeholder="Email:" type="email" onChange={() => { }} />
                     <label htmlFor='password'>Password:</label>
-                    <input id='password' className="password" value={pass} placeholder="******" type="password" onChange={(e) => setPass(e.target.value)} />
+                    <input id='password' type={type} className="password" ref={loginPasswordRef} placeholder="******" onChange={() => { }} />
+                    <button type='button' onClick={() => setType(t => t === 'password' ? 'text' : 'password')} className="pass_button">Show Password</button>
+
                     <button type='submit' onClick={() => { }}>Log In</button>
                 </form>
-                <button className="button_direction">Don't have an account? Register here.</button>
+                <button className="button_direction" onClick={setPageState('registration')}>Don't have an account? Register here.</button>
             </div>
         </>
     )
