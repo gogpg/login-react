@@ -1,21 +1,22 @@
 import './App.scss';
-import Login from './components/Login';
+// import Login from './components/Login';
 import Registration from './components/Register';
-import { useState } from 'react';
+import { useReducer } from 'react';
+import data_reducer from './reducers/dataReducer';
 import DataContext from './components/DataContext';
+// import DataContext from './components/DataContext';
 
 function App() {
+  const [data, dispachData] = useReducer(data_reducer, [])
 
-  const [pageState, setPageState] = useState('login')
 
   return (
-    <>
-      <DataContext.Provider value={{
-        setPageState
-      }}>
-        {pageState ? <Login /> : <Registration />}
-      </DataContext.Provider>
-    </>
+    <DataContext.Provider value={{
+      data, dispachData
+    }}>
+      {/* <Login /> */}
+      <Registration />
+    </DataContext.Provider>
   )
 }
 

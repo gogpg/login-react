@@ -1,7 +1,6 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import inputsValidation from "../functions/inputValidation";
-import DataContext from "./DataContext";
 
 export default function Registration() {
 
@@ -11,20 +10,24 @@ export default function Registration() {
 
     const [type, setType] = useState('password');
     const [isChecked, setIsChecked] = useState(false);
-    const { setPageState } = useContext(DataContext)
+
+    // const [notification, setNotification] = useState('');
 
     const registration = e => {
         e.preventDefault();
 
-        const name = inputsValidation('name', nameRef.current.value);
-        const email = inputsValidation('email', emailRef.current.value);
-        const pass = inputsValidation('pass', passwordRef.current.value);
+        const name = nameRef.current.value;
+        const email = emailRef.current.value;
+        const pass = passwordRef.current.value;
 
         console.log({ name, email, pass, isChecked })
     }
     return (
 
         <div className="form_place">
+
+            {/* <div>{notification}</div> */}
+
             <form onSubmit={(e) => { registration(e) }}>
                 <h1>User Registration</h1>
 
@@ -36,7 +39,9 @@ export default function Registration() {
 
                 <label htmlFor="password"> Password: </label>
                 <input id="password" type={type} className="password" ref={passwordRef} placeholder="Password:" onKeyUp={() => { }} />
-                <button type='button' onClick={() => setType(t => t === 'password' ? 'text' : 'password')} className="pass_button">Show Password</button>
+                <button type='button' onClick={() => setType(t => t === 'password' ? 'text' : 'password')} className="pass_button">
+                    {type === 'password' ? 'Show password' : 'Hide password'}
+                </button>
 
                 <div className="checkbox_place">
                     <input id="check" type='checkbox' checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} />
@@ -45,7 +50,7 @@ export default function Registration() {
 
                 <button onClick={() => { }}>Sign Up</button>
             </form>
-            <button className="button_direction" onClick={setPageState('login')}> Already have an account? LOGIN</button>
+            <button className="button_direction" onClick={() => { }}> Already have an account? LOGIN</button>
         </div >
     )
 }

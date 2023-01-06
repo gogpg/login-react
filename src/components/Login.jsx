@@ -1,14 +1,11 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { useState } from "react";
-import DataContext from "./DataContext";
 
 export default function Login() {
     const loginEmailRef = useRef();
     const loginPasswordRef = useRef();
 
     const [type, setType] = useState('password');
-
-    const { setPageState } = useContext(DataContext)
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -18,8 +15,6 @@ export default function Login() {
 
         console.log({ loginEmail, loginPass })
     }
-
-
     return (
         <>
             <div className="form_place">
@@ -33,7 +28,7 @@ export default function Login() {
 
                     <button type='submit' onClick={() => { }}>Log In</button>
                 </form>
-                <button className="button_direction" onClick={setPageState('registration')}>Don't have an account? Register here.</button>
+                <button className="button_direction" onClick={() => { }}>Don't have an account? Register here.</button>
             </div>
         </>
     )

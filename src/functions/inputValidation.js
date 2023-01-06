@@ -1,31 +1,55 @@
-function inputsValidation(type, input) {
-
+function inputsValidation(input, type) {
     input = input.trim();
 
-    if (!input) {   //tikriname ar tuscias inputas, kad switch be reikalo neveiktu.
-        return input;
-    }
+    let payload = {
+        value: input,
+        error: false,
+        notification: ''
+    };
 
     switch (type) {
-
         case 'name':
+            if (!input) {
+                payload = { ...payload, error: true, notification: 'name input is empty' };
+                break;
+            }
 
-            input = input[0].toUpperCase() + input.slice(1).toLowerCase();
+            const newName = input[0].toUpperCase() + input.slice(1).toLowerCase();
+            payload = { ...payload, value: newName };
+
             break;
 
         case 'email':
-            //  add validation..
+            if (!input) {
+                payload = { ...payload, error: true, notification: 'email input is empty' };
+                break;
+            }
+
+            const newEmail = input.toLowerCase();
+            payload = { ...payload, value: newEmail };
 
             break;
 
         case 'pass':
-            //  add validation..
+            if (!input) {
+                payload = { ...payload, error: true, notification: 'password input is empty' };
+                break;
+            }
+
+            const minPassLength = 4;
+
+            if (input.length < minPassLength) {
+                payload = { ...payload, error: true, notification: `password length must be ${minPassLength} characters` };
+                break;
+            }
+
             break;
 
         default:
+            break;
     }
 
-    return input;
+    return payload;
 }
 
 export default inputsValidation;
