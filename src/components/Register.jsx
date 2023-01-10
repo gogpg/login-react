@@ -1,9 +1,15 @@
 import { useRef } from "react";
+import { useContext } from "react";
 import { useState } from "react";
+import { addNewClient_action } from "../actions/dataActions";
+import getId from "../functions/getId";
 import inputsValidation from "../functions/inputValidation";
+import DataContext from "./DataContext";
+import Notifications from "./Notifications";
+
 
 export default function Registration() {
-
+    const { dispachData } = useContext(DataContext)
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -11,25 +17,64 @@ export default function Registration() {
     const [type, setType] = useState('password');
     const [isChecked, setIsChecked] = useState(false);
 
-    // const [notification, setNotification] = useState('');
+    const [notificationsList, setNotificationsList] = useState([]);
 
     const registration = e => {
         e.preventDefault();
 
-        const name = nameRef.current.value;
-        const email = emailRef.current.value;
-        const pass = passwordRef.current.value;
+        setNotificationsList([]); //nunuliname visas pries tai ismestas klaidas.
+
+        const name = inputsValidation(nameRef.current.value, 'name');
+        const email = inputsValidation(emailRef.current.value, 'email');
+        const pass = inputsValidation(passwordRef.current.value, 'pass');
+
+        const isName = !name.error;
+        const isEmail = !email.error;
+        const isPass = !pass.error;
+
+        if (isName && isEmail && isPass && isChecked) {
+            dispachData(
+                addNewClient_action({
+                    id: getId(),
+                    name,
+                    email,
+                    pass,
+                    deleted: false,
+                    check: false,
+                })
+            );
+
+            nameRef.current.value = "";
+            emailRef.current.value = "";
+            passwordRef.current.value = "";
+            setIsChecked(false);
+
+        } else {
+            if (!isName) {
+                setNotificationsList(n => [...n, name.notification]);
+            }
+            if (!isEmail) {
+                setNotificationsList(n => [...n, email.notification]);
+            }
+            if (!isPass) {
+                setNotificationsList(n => [...n, pass.notification]);
+            }
+            if (!isChecked) {
+                setNotificationsList(n => [...n, 'Must agree.'])
+            }
+        }
 
         console.log({ name, email, pass, isChecked })
     }
+
     return (
 
         <div className="form_place">
-
-            {/* <div>{notification}</div> */}
+            <h1>User Registration</h1>
 
             <form onSubmit={(e) => { registration(e) }}>
-                <h1>User Registration</h1>
+
+                {notificationsList.length ? <Notifications notificationsList={notificationsList} /> : null}
 
                 <label htmlFor="name"> Name: </label>
                 <input id="name" className="name" ref={nameRef} placeholder="Name:" type="text" onKeyUp={() => { }} />

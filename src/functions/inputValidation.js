@@ -10,7 +10,7 @@ function inputsValidation(input, type) {
     switch (type) {
         case 'name':
             if (!input) {
-                payload = { ...payload, error: true, notification: 'name input is empty' };
+                payload = { ...payload, error: true, notification: 'Name input is empty' };
                 break;
             }
 
@@ -21,7 +21,7 @@ function inputsValidation(input, type) {
 
         case 'email':
             if (!input) {
-                payload = { ...payload, error: true, notification: 'email input is empty' };
+                payload = { ...payload, error: true, notification: 'Email input is empty.' };
                 break;
             }
 
@@ -32,14 +32,14 @@ function inputsValidation(input, type) {
 
         case 'pass':
             if (!input) {
-                payload = { ...payload, error: true, notification: 'password input is empty' };
+                payload = { ...payload, error: true, notification: 'Password input is empty.' };
                 break;
             }
 
             const minPassLength = 4;
 
             if (input.length < minPassLength) {
-                payload = { ...payload, error: true, notification: `password length must be ${minPassLength} characters` };
+                payload = { ...payload, error: true, notification: `Password length must be ${minPassLength} characters.` };
                 break;
             }
 

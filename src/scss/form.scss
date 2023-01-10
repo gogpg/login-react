@@ -3,6 +3,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    h1 {
+        margin: 20px 0;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 42px;
+        letter-spacing: 2px;
+        text-align: center;
+       color: #ffffff;
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -13,19 +24,11 @@
         backdrop-filter: blur(10px);
         border: 2px solid rgba(255,255,255,0.1);
         box-shadow: 0 0 40px rgba(8,7,16,0.6);
-        padding: 50px 35px;
+        padding: 15px 20px;
         color: #ffffff;
-        
-        h1 {
-            margin: 0;
-            font-size: 40px;
-            font-weight: 700;
-            line-height: 42px;
-            letter-spacing: 2px;
-            text-align: center;
-        }
+    
         label {
-            margin-top: 20px;
+            margin-top: 5px;
             margin-bottom: 4px;
             align-self: flex-start;
         }
@@ -65,13 +68,21 @@
         .check_label {
             font-size: 0.8rem;
             margin-left: 5px;
+            margin-top: 8px;
         }
         #check {
             width: fit-content;
             accent-color: white;
             height: fit-content;
-            margin-top: 21px;
+            margin-top: 10px;
             margin-left: 0;
         }
     }
+}
+
+.notification {
+    color: rgb(206, 18, 18);
+    background: #e8f0fe;;
+    padding: 5px;
+    border-radius: 3px;
 }
