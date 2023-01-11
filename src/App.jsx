@@ -7,7 +7,7 @@ import DataContext from './components/DataContext';
 // import DataContext from './components/DataContext';
 
 function App() {
-  const [data, dispachData] = useReducer(data_reducer, [])
+  const [data, dispachData] = useReducer(data_reducer, null)
 
 
   return (

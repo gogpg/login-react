@@ -1,15 +1,14 @@
 import { useRef } from "react";
 import { useContext } from "react";
 import { useState } from "react";
-import { addNewClient_action } from "../actions/dataActions";
+import { registration_action } from "../actions/dataActions";
 import getId from "../functions/getId";
 import inputsValidation from "../functions/inputValidation";
 import DataContext from "./DataContext";
 import Notifications from "./Notifications";
 
-
 export default function Registration() {
-    const { dispachData } = useContext(DataContext)
+    const { dispachData } = useContext(DataContext);
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -34,13 +33,11 @@ export default function Registration() {
 
         if (isName && isEmail && isPass && isChecked) {
             dispachData(
-                addNewClient_action({
+                registration_action({
                     id: getId(),
-                    name,
-                    email,
-                    pass,
-                    deleted: false,
-                    check: false,
+                    name: name.value,
+                    email: email.value,
+                    pass: pass.value
                 })
             );
 

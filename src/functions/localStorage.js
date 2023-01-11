@@ -1,5 +1,5 @@
-function localStorageAdd(data) {
-    localStorage.setItem('data', JSON.stringify(data));
+function updateDataInLocalStorage(data) {
+    localStorage.setItem('usersData', JSON.stringify(data));
 }
 
-export default localStorageAdd;
+export default updateDataInLocalStorage;

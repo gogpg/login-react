@@ -1,8 +1,8 @@
-import { aaddNewClient_const } from "../constants/dataConstants";
+import { registration_const } from "../constants/dataConstants";
 
-export function addNewClient_action(newData) {
+export function registration_action(newData) {
     return {
-        type: aaddNewClient_const,
+        type: registration_const,
         payload: newData
     }
 }
