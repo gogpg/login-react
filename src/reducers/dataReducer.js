@@ -4,14 +4,17 @@ import updateDataInLocalStorage from "../functions/localStorage";
 
 function data_reducer(_, action) {
 
-    let newState = [JSON.parse(localStorage.getItem('usersData')) || [], []];  //vienas userData, kitas notifications skirtas masyvas
-
+    let newState = [{}, []];
+    let data = JSON.parse(localStorage.getItem('usersData')) || [];  //vienas userData, kitas notifications skirtas masyvas
     switch (action.type) {
         case registration_const:
-            if (newState[0]) {
-                if (!newState[0].some(user => user.email === action.payload.email)) {
-                    newState[0] = [...newState[0], { ...action.payload, id: getId() }];
-                    updateDataInLocalStorage(newState[0]); //paduodame pirmaji masyva
+            if (data) {
+                if (!data.some(user => user.email === action.payload.email)) {
+                    newState[0] = { ...action.payload, id: getId(), registrationDate: Date.now() };
+                    data = [...data, newState[0]];
+                    updateDataInLocalStorage(data);
+                } else {
+                    newState[1] = ['User already exist.']
                 }
             }
 

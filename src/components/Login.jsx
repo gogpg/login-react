@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const loginEmailRef = useRef();
@@ -25,10 +26,12 @@ export default function Login() {
                     <label htmlFor='password'>Password:</label>
                     <input id='password' type={type} className="password" ref={loginPasswordRef} placeholder="******" onChange={() => { }} />
                     <button type='button' onClick={() => setType(t => t === 'password' ? 'text' : 'password')} className="pass_button">Show Password</button>
+                    <input type='checkbox'></input>
 
                     <button type='submit' onClick={() => { }}>Log In</button>
                 </form>
-                <button className="button_direction" onClick={() => { }}>Don't have an account? Register here.</button>
+                <Link to='/registration'>Don't have an account? Register here.</Link>
+                {/* <button className="button_direction" onClick={() => { }}>Don't have an account? Register here.</button> */}
             </div>
         </>
     )

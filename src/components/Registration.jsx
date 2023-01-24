@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useContext } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { registration_action } from "../actions/dataActions";
 import getId from "../functions/getId";
 import inputsValidation from "../functions/inputValidation";
@@ -8,7 +9,7 @@ import DataContext from "./DataContext";
 import Notifications from "./Notifications";
 
 export default function Registration() {
-    const { dispachData } = useContext(DataContext);
+    const { dispachData, data } = useContext(DataContext);
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -32,6 +33,7 @@ export default function Registration() {
         const isPass = !pass.error;
 
         if (isName && isEmail && isPass && isChecked) {
+
             dispachData(
                 registration_action({
                     id: getId(),
@@ -64,6 +66,14 @@ export default function Registration() {
         console.log({ name, email, pass, isChecked })
     }
 
+    useEffect(() => {
+
+        if (data) {
+            const notifications = data[1];
+            setNotificationsList(notifications)
+        }
+    }, [data]);
+
     return (
 
         <div className="form_place">
@@ -92,7 +102,8 @@ export default function Registration() {
 
                 <button onClick={() => { }}>Sign Up</button>
             </form>
-            <button className="button_direction" onClick={() => { }}> Already have an account? LOGIN</button>
+            <Link to='/login'>Already have an account? LOGIN</Link>
+            {/* <button > Already have an account? LOGIN</button> */}
         </div >
     )
 }
